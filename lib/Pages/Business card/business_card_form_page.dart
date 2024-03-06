@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qr_code/Pages/Full%20Qrcode/full_qrcode.dart';
 import 'package:qr_code/model/form_controller.dart';
 import 'package:qr_code/Pages/Business%20card/business_card_page.dart';
 
@@ -135,8 +136,35 @@ class _BusinessCardFormPageState extends State<BusinessCardFormPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const BusinessCardQrPage());
-                  formcontroller.addQrCode(
+                  if(formcontroller.linkText.text.isEmpty){
+                    displayToastMessage("Link space is empty", context);
+                  }
+                  else if(formcontroller.nameText.text.isEmpty){
+                    displayToastMessage("Namesapace should not be empty", context);
+                  }
+                  else if(formcontroller.emailText.text.isEmpty){
+                    displayToastMessage("Provide Email address", context);
+                  }
+                  else if(!formcontroller.emailText.text.contains("@")){
+                    displayToastMessage("Email address is invalid", context);
+                  }
+                  else if(formcontroller.contactText.text.isEmpty){
+                    displayToastMessage("Contact space is empty ", context);
+                  }
+                  else if(formcontroller.contactText.text.length > 14){
+                    displayToastMessage("Contact number is invalid", context);
+                  }
+                   else if(formcontroller.positionText.text.isEmpty){
+                    displayToastMessage("Profession space is empty", context);
+                  }
+                  else if(formcontroller.locationText.text.isEmpty){
+                    displayToastMessage("Provide your location address", context);
+                  }
+                  else{
+                    displayToastMessage("Done Successfully", context);
+
+                    Get.to(() => const BusinessCardQrPage());
+                    formcontroller.addQrCode(
                     formcontroller.linkText.text,
                     formcontroller.nameText.text,
                     formcontroller.contactText.text,
@@ -144,6 +172,8 @@ class _BusinessCardFormPageState extends State<BusinessCardFormPage> {
                     formcontroller.emailText.text,
                     formcontroller.positionText.text
                   );
+                  }
+                  
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(

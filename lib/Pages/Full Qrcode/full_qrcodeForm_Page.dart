@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:qr_code/Pages/Full%20Qrcode/full_qrcode.dart';
 
@@ -67,7 +68,12 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const FullQrcodePage());
+                  if(formcontroller.linkText.text.isEmpty){
+                    
+                    displayToastMessage("Link space is empty", context);
+                  }
+                  else{
+                     Get.to(() => const FullQrcodePage());
                   formcontroller.addQrCode(
                       formcontroller.linkText.text,
                       formcontroller.nameText.text,
@@ -75,6 +81,8 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
                       formcontroller.locationText.text,
                       formcontroller.emailText.text,
                       formcontroller.positionText.text);
+                  }
+                 
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(
@@ -105,3 +113,8 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
     );
   }
 }
+
+
+// displayToastMessage(String message, BuildContext context) {
+//   Fluttertoast.showToast(msg: message, fontSize: 16);
+// }

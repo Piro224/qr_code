@@ -4,7 +4,7 @@ import 'package:qr_code/Pages/Bookings/booking_form_page.dart';
 import 'package:qr_code/Pages/Product%20Ads/product_ads_form_page.dart';
 import 'package:qr_code/Pages/Full%20Qrcode/full_qrcodeForm_Page.dart';
 
-import 'Business card/buiness_card_form_page.dart';
+import 'Business card/business_card_form_page.dart';
 
 class TemplatePage extends StatelessWidget {
   const TemplatePage({super.key});

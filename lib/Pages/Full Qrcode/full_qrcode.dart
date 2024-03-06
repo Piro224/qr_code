@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:async';
@@ -36,37 +38,37 @@ class _QrPageState extends State<FullQrcodePage> {
     _requestPermission();
   }
 
-  showCaptureToast() {
-    Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.grey,
-      ),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.check_circle, color: Colors.white),
-          SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              'Image Saved to Gallery ',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          ),
-        ],
-      ),
-    );
+  // showCaptureToast() {
+  //   Widget toast = Container(
+  //     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(10),
+  //       color: Colors.grey,
+  //     ),
+  //     child: const Row(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       children: [
+  //         Icon(Icons.check_circle, color: Colors.white),
+  //         SizedBox(width: 10),
+  //         Expanded(
+  //           child: Text(
+  //             'Image Saved to Gallery ',
+  //             style: TextStyle(color: Colors.white, fontSize: 18),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
 
 
-    fToast.showToast(
-      child: toast,
-      gravity: ToastGravity.BOTTOM,
-      toastDuration: const Duration(seconds: 3),
-    );
+  //   fToast.showToast(
+  //     child: toast,
+  //     gravity: ToastGravity.BOTTOM,
+  //     toastDuration: const Duration(seconds: 3),
+  //   );
 
-  }
+  // }
 
   bool isCaptured = false;
 
@@ -161,7 +163,7 @@ class _QrPageState extends State<FullQrcodePage> {
 
             _saveImage(bytes);
 
-            showCaptureToast();
+            displayToastMessage("Image saved successfully", context);
           },
           leading: const Icon(Icons.image_rounded, color: Colors.white),
           title: const Text(
@@ -264,7 +266,7 @@ class _QrPageState extends State<FullQrcodePage> {
               ),
             ),
             Container(
-              height: 30,
+              height: 50,
               width: 260,
               color: Colors.black,
               child: const Center(
@@ -312,4 +314,10 @@ class ScanClipper extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return true;
   }
+}
+
+
+
+displayToastMessage(String message, BuildContext context) {
+  Fluttertoast.showToast(msg: message, fontSize: 16);
 }
