@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       builder: FToastBuilder(),
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'QR SHOTS',
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
         primarySwatch: Colors.blue,
