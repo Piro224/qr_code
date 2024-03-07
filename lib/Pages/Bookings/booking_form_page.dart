@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code/Pages/Bookings/booking_page.dart';
+import 'package:qr_code/Utils/toast.dart';
 
 import '../../model/form_controller.dart';
 
@@ -126,7 +127,26 @@ class _BookingFormPageState extends State<BookingFormPage> {
              
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const BookingPage());
+                  if(formcontroller.linkText.text.isEmpty){
+                    displayToastMessage("Link space is empty", context);
+                  }
+                  else if(formcontroller.nameText.text.isEmpty){
+                    displayToastMessage("Name space is empty", context);
+                  }
+                  else if(formcontroller.contactText.text.isEmpty){
+                    displayToastMessage("Contact space is empty", context);
+                  }
+                  else if(formcontroller.locationText.text.isEmpty){
+                    displayToastMessage("Location space is empty", context);
+                  }
+                  else if(formcontroller.emailText.text.isEmpty){
+                    displayToastMessage("Email space is empty", context);
+                  }
+                   else if(formcontroller.positionText.text.isEmpty){
+                    displayToastMessage("Prosfession space is empty", context);
+                  }
+                  else{
+                     Get.to(() => const BookingPage());
                   formcontroller.addQrCode(
                     formcontroller.linkText.text,
                     formcontroller.nameText.text,
@@ -135,6 +155,8 @@ class _BookingFormPageState extends State<BookingFormPage> {
                     formcontroller.emailText.text,
                     formcontroller.positionText.text
                   );
+                  }
+                 
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(

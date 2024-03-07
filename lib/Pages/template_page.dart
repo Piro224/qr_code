@@ -16,6 +16,7 @@ class TemplatePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.red[300],
         centerTitle: false,
+       automaticallyImplyLeading: false,
         title: const Text(
           'Choose Template',
           style: TextStyle(

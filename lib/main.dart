@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qr_code/Pages/template_page.dart';
 import 'package:qr_code/model/form_controller.dart';
+
+import 'Pages/splashScreen/splashScreen.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      home:  const TemplatePage(),
+      home:  const SplashScreen(),
     );
   }
 }

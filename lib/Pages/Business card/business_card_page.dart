@@ -15,6 +15,8 @@ import 'package:qr_code/model/form_controller.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 
+import '../../Utils/toast.dart';
+
 class BusinessCardQrPage extends StatefulWidget {
   const BusinessCardQrPage({super.key});
 
@@ -27,60 +29,16 @@ class _QrPageState extends State<BusinessCardQrPage> {
   final GlobalKey globalKey = GlobalKey();
 
   Uint8List? bytes;
-  FToast fToast = FToast();
 
   @override
   void initState() {
     super.initState();
-    fToast = FToast();
-    fToast.init(context);
-
+   
     // loadImage();
     _requestPermission();
   }
 
-  showCaptureToast() {
-    Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.grey,
-      ),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.check_circle, color: Colors.white),
-          SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              'Image Saved to Gallery ',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          ),
-        ],
-      ),
-    );
 
-
-    fToast.showToast(
-      child: toast,
-      gravity: ToastGravity.BOTTOM,
-      toastDuration: const Duration(seconds: 3),
-    );
-
-    // // Custom Toast Position
-    // fToast.showToast(
-    //     child: toast,
-    //     toastDuration: Duration(seconds: 2),
-    //     positionedToastBuilder: (context, child) {
-    //       return Positioned(
-    //         top: 16.0,
-    //         left: 16.0,
-    //         child: child,
-    //       );
-    //     });
-  }
 
   bool isCaptured = false;
 
@@ -177,8 +135,6 @@ class _QrPageState extends State<BusinessCardQrPage> {
 
             _saveImage(bytes);
 
-            showCaptureToast();
-            
             displayToastMessage("Image Saved Successfully", context);
           },
           leading: const Icon(Icons.image_rounded, color: Colors.white),
@@ -190,19 +146,7 @@ class _QrPageState extends State<BusinessCardQrPage> {
             ),
           ),
         ),
-        // ListTile(
-        //   onTap: () {
-        //     Navigator.pop(context);
-        //   },
-        //   leading: const Icon(Icons.share_rounded, color: Colors.white),
-        //   title: const Text(
-        //     "Share",
-        //     style: TextStyle(
-        //       color: Colors.white,
-        //       fontSize: 16,
-        //     ),
-        //   ),
-        // ),
+       
         ListTile(
           onTap: () {
             Navigator.pop(context);

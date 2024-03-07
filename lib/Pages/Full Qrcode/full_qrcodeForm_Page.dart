@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:qr_code/Pages/Full%20Qrcode/full_qrcode.dart';
 
+import '../../Utils/toast.dart';
 import '../../model/form_controller.dart';
 
 class FullQrcodeFormPage extends StatefulWidget {

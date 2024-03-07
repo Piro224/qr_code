@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code/Pages/Product%20Ads/product_ads_page.dart';
+import 'package:qr_code/Utils/toast.dart';
 import 'package:qr_code/model/form_controller.dart';
 
 
@@ -126,7 +127,26 @@ class _ProductAdsFormPageState extends State<ProductAdsFormPage> {
              
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const ProductAdsPage());
+                  if(formcontroller.linkText.text.isEmpty){
+                    displayToastMessage("Link space is empty", context);
+                  }
+                  else if(formcontroller.nameText.text.isEmpty){
+                    displayToastMessage("Name space is empty", context);
+                  }
+                  else if(formcontroller.contactText.text.isEmpty){
+                    displayToastMessage("Contact space is empty", context);
+                  }
+                  else if(formcontroller.locationText.text.isEmpty){
+                    displayToastMessage("Location space is empty", context);
+                  }
+                   else if(formcontroller.emailText.text.isEmpty){
+                    displayToastMessage("Email space is empty", context);
+                  }
+                   else if(formcontroller.positionText.text.isEmpty){
+                    displayToastMessage("Profession space is empty", context);
+                  }
+                  else{
+                     Get.to(() => const ProductAdsPage());
                   formcontroller.addQrCode(
                     formcontroller.linkText.text,
                     formcontroller.nameText.text,
@@ -135,6 +155,8 @@ class _ProductAdsFormPageState extends State<ProductAdsFormPage> {
                     formcontroller.emailText.text,
                     formcontroller.positionText.text
                   );
+                  }
+                 
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(
