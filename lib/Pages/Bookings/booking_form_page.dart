@@ -131,7 +131,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
                     displayToastMessage("Link space is empty", context);
                   }
                   else if(formcontroller.nameText.text.isEmpty){
-                    displayToastMessage("Name space is empty", context);
+                    displayToastMessage("Heading space is empty", context);
                   }
                   else if(formcontroller.contactText.text.isEmpty){
                     displayToastMessage("Contact space is empty", context);
@@ -139,11 +139,8 @@ class _BookingFormPageState extends State<BookingFormPage> {
                   else if(formcontroller.locationText.text.isEmpty){
                     displayToastMessage("Location space is empty", context);
                   }
-                  else if(formcontroller.emailText.text.isEmpty){
-                    displayToastMessage("Email space is empty", context);
-                  }
                    else if(formcontroller.positionText.text.isEmpty){
-                    displayToastMessage("Prosfession space is empty", context);
+                    displayToastMessage("Plain text space is empty", context);
                   }
                   else{
                      Get.to(() => const BookingPage());

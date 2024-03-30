@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:qr_code/Pages/Full%20Qrcode/full_qrcode.dart';
 
@@ -114,8 +113,3 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
     );
   }
 }
-
-
-// displayToastMessage(String message, BuildContext context) {
-//   Fluttertoast.showToast(msg: message, fontSize: 16);
-// }

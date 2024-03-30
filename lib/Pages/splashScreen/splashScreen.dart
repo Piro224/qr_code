@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../template_page.dart';
+import '../../Template page/template_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
-  @override
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -24,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
     );
     _animation =
-        CurvedAnimation(parent: _animationController!, curve: Curves.easeOut);
+        CurvedAnimation(parent: _animationController!, curve: Curves.easeOutBack);
     _animationController!.forward();
 
     Future.delayed(const Duration(seconds: 3), () {
@@ -44,10 +43,14 @@ class _SplashScreenState extends State<SplashScreen>
     return AnimatedContainer(
       duration: Duration(seconds: 3),
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Colors.amber.withOpacity(0.7),
-          Colors.red.withOpacity(0.7),
-        ]),
+        gradient: LinearGradient(
+          colors: [
+            Colors.amber.withOpacity(0.7),
+            Colors.red.withOpacity(0.7),
+          ],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ),
       ),
       child: Scaffold(
         backgroundColor: Colors.white70,
