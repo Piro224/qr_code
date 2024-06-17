@@ -4,7 +4,6 @@ import 'package:qr_code/Pages/Product%20Ads/product_ads_page.dart';
 import 'package:qr_code/Utils/toast.dart';
 import 'package:qr_code/model/form_controller.dart';
 
-
 class ProductAdsFormPage extends StatefulWidget {
   const ProductAdsFormPage({super.key});
 
@@ -14,7 +13,7 @@ class ProductAdsFormPage extends StatefulWidget {
 
 class _ProductAdsFormPageState extends State<ProductAdsFormPage> {
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     FormController formcontroller = Get.put(FormController());
     return GetBuilder<FormController>(
       builder: (_) => Scaffold(
@@ -41,7 +40,7 @@ class _ProductAdsFormPageState extends State<ProductAdsFormPage> {
           centerTitle: true,
           elevation: 0,
         ),
-       body: SingleChildScrollView(
+        body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
@@ -90,7 +89,6 @@ class _ProductAdsFormPageState extends State<ProductAdsFormPage> {
                   ),
                 ),
               ),
-              
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,
@@ -123,36 +121,32 @@ class _ProductAdsFormPageState extends State<ProductAdsFormPage> {
                   ),
                 ),
               ),
-             
               GestureDetector(
                 onTap: () {
-                  if(formcontroller.linkText.text.isEmpty){
-                    displayToastMessage("Link space is empty", context);
+                  if (formcontroller.linkText.text.isEmpty) {
+                    displayToastMessage("Link field is empty", context);
+                  } else if (formcontroller.nameText.text.isEmpty) {
+                    displayToastMessage("Heading field is empty", context);
+                  } else if (formcontroller.contactText.text.isEmpty) {
+                    displayToastMessage("Contact field is empty", context);
+                  } else if (formcontroller.contactText.text.length > 14) {
+                    displayToastMessage("Contact number is invalid", context);
+                  } else if (formcontroller.locationText.text.isEmpty) {
+                    displayToastMessage("Location field is empty", context);
+                  } else if (formcontroller.positionText.text.isEmpty) {
+                    displayToastMessage("Plain text field is empty", context);
+                  } else {
+                    displayToastMessage("Done Successfully", context);
+
+                    Get.to(() => const ProductAdsPage());
+                    formcontroller.addQrCode(
+                        formcontroller.linkText.text,
+                        formcontroller.nameText.text,
+                        formcontroller.contactText.text,
+                        formcontroller.locationText.text,
+                        formcontroller.emailText.text,
+                        formcontroller.positionText.text);
                   }
-                  else if(formcontroller.nameText.text.isEmpty){
-                    displayToastMessage("Heading space is empty", context);
-                  }
-                  else if(formcontroller.contactText.text.isEmpty){
-                    displayToastMessage("Contact space is empty", context);
-                  }
-                  else if(formcontroller.locationText.text.isEmpty){
-                    displayToastMessage("Location space is empty", context);
-                  }
-                   else if(formcontroller.positionText.text.isEmpty){
-                    displayToastMessage("Plain text space is empty", context);
-                  }
-                  else{
-                     Get.to(() => const ProductAdsPage());
-                  formcontroller.addQrCode(
-                    formcontroller.linkText.text,
-                    formcontroller.nameText.text,
-                    formcontroller.contactText.text,
-                    formcontroller.locationText.text,
-                    formcontroller.emailText.text,
-                    formcontroller.positionText.text
-                  );
-                  }
-                 
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(
@@ -176,7 +170,6 @@ class _ProductAdsFormPageState extends State<ProductAdsFormPage> {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),

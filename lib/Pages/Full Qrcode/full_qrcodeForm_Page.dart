@@ -68,21 +68,20 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  if(formcontroller.linkText.text.isEmpty){
-                    
+                  if (formcontroller.linkText.text.isEmpty) {
                     displayToastMessage("Link space is empty", context);
+                  } else {
+                    displayToastMessage("Done Successfully", context);
+
+                    Get.to(() => const FullQrcodePage());
+                    formcontroller.addQrCode(
+                        formcontroller.linkText.text,
+                        formcontroller.nameText.text,
+                        formcontroller.contactText.text,
+                        formcontroller.locationText.text,
+                        formcontroller.emailText.text,
+                        formcontroller.positionText.text);
                   }
-                  else{
-                     Get.to(() => const FullQrcodePage());
-                  formcontroller.addQrCode(
-                      formcontroller.linkText.text,
-                      formcontroller.nameText.text,
-                      formcontroller.contactText.text,
-                      formcontroller.locationText.text,
-                      formcontroller.emailText.text,
-                      formcontroller.positionText.text);
-                  }
-                 
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(

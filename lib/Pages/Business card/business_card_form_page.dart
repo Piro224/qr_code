@@ -138,10 +138,10 @@ class _BusinessCardFormPageState extends State<BusinessCardFormPage> {
               GestureDetector(
                 onTap: () {
                   if(formcontroller.linkText.text.isEmpty){
-                    displayToastMessage("Link space is empty", context);
+                    displayToastMessage("Link field is empty", context);
                   }
                   else if(formcontroller.nameText.text.isEmpty){
-                    displayToastMessage("Namesapace should not be empty", context);
+                    displayToastMessage("Namespace should not be empty", context);
                   }
                   else if(formcontroller.emailText.text.isEmpty){
                     displayToastMessage("Provide Email address", context);
@@ -150,7 +150,7 @@ class _BusinessCardFormPageState extends State<BusinessCardFormPage> {
                     displayToastMessage("Email address is invalid", context);
                   }
                   else if(formcontroller.contactText.text.isEmpty){
-                    displayToastMessage("Contact space is empty ", context);
+                    displayToastMessage("Contact field is empty ", context);
                   }
                   else if(formcontroller.contactText.text.length > 14){
                     displayToastMessage("Contact number is invalid", context);
