@@ -69,7 +69,7 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
               GestureDetector(
                 onTap: () {
                   if (formcontroller.linkText.text.isEmpty) {
-                    displayToastMessage("Link space is empty", context);
+                    displayToastMessage("Link field is empty", context);
                   } else {
                     displayToastMessage("Done Successfully", context);
 
