@@ -38,6 +38,8 @@ class TemplatePage extends StatelessWidget {
       body: WillPopScope(
         onWillPop: () async {
           if (Platform.isAndroid) {
+            Future.delayed(const Duration(milliseconds: 3000));
+            SystemNavigator.pop();
             final now = DateTime.now();
             final maxDuration = Duration(seconds: 2);
             final isWarning = lastPressed == null ||
