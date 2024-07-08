@@ -1,15 +1,17 @@
+
 import 'package:flutter/material.dart';
 
 class TemplateCards extends StatelessWidget {
   const TemplateCards({
     super.key,
     required this.cardName,
-    required this.onTap,
+    required this.onTap, 
   });
 
   final String cardName;
 
   final void Function()? onTap;
+
 
   @override
   Widget build(BuildContext context) {

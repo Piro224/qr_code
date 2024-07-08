@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController!.forward();
 
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(() => const TemplatePage());
+      Get.to(() =>  TemplatePage());
       // Navigate to the home screen or the next screen
     });
   }
