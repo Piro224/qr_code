@@ -24,7 +24,7 @@ class TemplatePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.red[300],
         centerTitle: false,
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         title: const Text(
           'Choose Template',
           style: TextStyle(
@@ -37,42 +37,48 @@ class TemplatePage extends StatelessWidget {
       ),
       body: WillPopScope(
         onWillPop: () async {
-          final now = DateTime.now();
-          final maxDuration = Duration(seconds: 2);
-          final isWarning =
-              lastPressed == null || now.difference(lastPressed!) > maxDuration;
+          if (Platform.isAndroid) {
+            final now = DateTime.now();
+            final maxDuration = Duration(seconds: 2);
+            final isWarning = lastPressed == null ||
+                now.difference(lastPressed!) > maxDuration;
 
-          if (isWarning) {
-            lastPressed = DateTime.now();
+            if (isWarning) {
+              lastPressed = DateTime.now();
 
-            final snackBar = SnackBar(
-              content: GestureDetector(
-                onTap: () {
-                  if (Platform.isAndroid) {
-                    Future.delayed(const Duration(milliseconds: 1000));
-                    SystemNavigator.pop();
-                  } else {
-                    exit(0);
-                  }
-                },
-                child: Text(
-                  'Tap again to Close app',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              duration: maxDuration,
-            );
+              // final snackBar = SnackBar(
+              //   content: GestureDetector(
+              //     onTap: () {
+              //       if (Platform.isAndroid) {
+              //         Future.delayed(const Duration(milliseconds: 3000));
+              //         SystemNavigator.pop();
+              //       } else {
+              //         exit(0);
+              //       }
+              //     },
+              //     child: Text(
+              //       'Tap here to Close app',
+              //       style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              //   ),
+              //   duration: maxDuration,
+              // );
 
-            ScaffoldMessenger.of(context)
-              ..removeCurrentSnackBar()
-              ..showSnackBar(snackBar);
+              // ScaffoldMessenger.of(context)
+              //   ..removeCurrentSnackBar()
+              //   ..showSnackBar(snackBar);
 
-            return false;
-          } else {
-            return true;
+              return false;
+            } 
+            else {
+              return true;
+            }
+          }else{
+            exit(0);
           }
+
         },
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 10),
