@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unused_import
 
 import 'dart:io';
 import 'dart:typed_data';
@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:qr_code/Utils/fullQrCard.dart';
 import 'package:qr_code/model/form_controller.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
@@ -31,7 +32,7 @@ class _QrPageState extends State<FullQrcodePage> {
   @override
   void initState() {
     super.initState();
-  
+
     // loadImage();
     _requestPermission();
   }
@@ -49,7 +50,7 @@ class _QrPageState extends State<FullQrcodePage> {
           // iconTheme: const IconThemeData(color: Colors.black),
           centerTitle: true,
           elevation: 0,
-          
+
           title: const Text(
             'QR Card',
             style: TextStyle(
@@ -95,13 +96,12 @@ class _QrPageState extends State<FullQrcodePage> {
                               );
                             });
                       },
-                      child: buildCard(formcontroller, index));
+                      child: FullQrbuildCard(formcontroller, index));
                 },
               ),
             ),
           ],
         ),
-       
       ),
     );
   }
@@ -110,10 +110,8 @@ class _QrPageState extends State<FullQrcodePage> {
       BuildContext context, FormController formcontroller, int index) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      
       children: [
         ListTile(
-          
           onTap: () async {
             Navigator.pop(context);
             final screenshotController = ScreenshotController();
@@ -121,7 +119,7 @@ class _QrPageState extends State<FullQrcodePage> {
               InheritedTheme.captureAll(
                 context,
                 Material(
-                  child: buildCard(formcontroller, index),
+                  child: FullQrbuildCard(formcontroller, index),
                 ),
               ),
             );
@@ -140,7 +138,6 @@ class _QrPageState extends State<FullQrcodePage> {
             ),
           ),
         ),
-        
         ListTile(
           onTap: () {
             Navigator.pop(context);
@@ -190,77 +187,6 @@ class _QrPageState extends State<FullQrcodePage> {
     ].request();
     final info = statuses[Permission.storage].toString();
     debugPrint(info);
-  }
-
-  Container buildCard(FormController formcontroller, int index) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      width: 300,
-      height: 330,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 5,
-            spreadRadius: 5,
-            offset: Offset(4, 3),
-          ),
-        ],
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Spacer(),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(width: 5, color: Colors.black),
-                ),
-                child: QrImageView(
-                  size: 250,
-                  data: formcontroller.qrcode.value[index].link,
-      
-                  // backgroundColor: Colors.black,
-                  // foregroundColor: Colors.white,
-                ),
-              ),
-            ),
-            Container(
-              height: 50,
-              width: 260,
-              color: Colors.black,
-              child: const Center(
-                child: FittedBox(
-                  child: Row(
-                    children: [
-                      Text(
-                        'Scan Me',
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.qr_code_scanner_outlined,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const Spacer(),
-          ],
-        ),
-      ),
-    );
   }
 }
 

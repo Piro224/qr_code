@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code/Pages/Full%20Qrcode/full_qrcode.dart';
 
+import '../../Utils/customTextFields.dart';
 import '../../Utils/toast.dart';
 import '../../model/form_controller.dart';
 
@@ -49,23 +50,13 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: TextField(
-                  // maxLines: 7,
-                  // minLines: 1,
+               CustomTextField(
+                  formcontroller: formcontroller,
+                  labelText: 'Enter link for QRcode',
                   controller: formcontroller.linkText,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter link for QRcode',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.link_sharp, color: Colors.black),
-                    // fillColor: Colors.white,
-                  ),
+                  icon: Icons.link_outlined,
                 ),
-              ),
+              
               GestureDetector(
                 onTap: () {
                   if (formcontroller.linkText.text.isEmpty) {
@@ -112,3 +103,4 @@ class _FullQrcodeFormPageState extends State<FullQrcodeFormPage> {
     );
   }
 }
+

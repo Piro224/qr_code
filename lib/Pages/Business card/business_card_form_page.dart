@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:qr_code/model/form_controller.dart';
 import 'package:qr_code/Pages/Business%20card/business_card_page.dart';
 
+import '../../Utils/customTextFields.dart';
 import '../../Utils/toast.dart';
 
 class BusinessCardFormPage extends StatefulWidget {
@@ -45,136 +46,71 @@ class _BusinessCardFormPageState extends State<BusinessCardFormPage> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: TextField(
-                  // maxLines: 7,
-                  // minLines: 1,
+              CustomTextField(
+                  formcontroller: formcontroller,
+                  labelText: 'Enter link for QRcode',
                   controller: formcontroller.linkText,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter link for QRcode',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.link_sharp, color: Colors.black),
-                    // fillColor: Colors.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: TextField(
+                  icon: Icons.link_outlined),
+              CustomTextField(
+                  formcontroller: formcontroller,
+                  labelText: 'Enter your Full Name',
                   controller: formcontroller.nameText,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter your Full Name',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person_pin, color: Colors.black),
-                  ),
-                ),
-              ),
-               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: TextField(
+                  icon: Icons.person_pin),
+              CustomTextField(
+                  formcontroller: formcontroller,
+                  labelText: 'Enter Specialty/Position eg. Teacher ***',
                   controller: formcontroller.positionText,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter Specialty/Position eg. Teacher ***',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.work_outlined, color: Colors.black),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: TextField(
+                  icon: Icons.work_outlined),
+              CustomTextField(
+                  formcontroller: formcontroller,
+                  keyType: TextInputType.emailAddress,
+                  labelText: 'Enter your Email',
                   controller: formcontroller.emailText,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter your Email',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.mail_sharp, color: Colors.black),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: TextField(
+                  icon: Icons.mail_sharp),
+              CustomTextField(
+                  formcontroller: formcontroller,
+                  keyType: TextInputType.phone,
+                  labelText: 'Enter your Contact eg. +41 *********',
                   controller: formcontroller.contactText,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter your Contact eg. +41 *********',
-                    border: OutlineInputBorder(),
-                    prefixIcon:
-                        Icon(Icons.dialpad_outlined, color: Colors.black),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 15,
-                ),
-                child: TextField(
+                  icon: Icons.dialpad_outlined),
+              CustomTextField(
+                  formcontroller: formcontroller,
+                  labelText: 'Enter your address',
                   controller: formcontroller.locationText,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter your address',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.location_on, color: Colors.black),
-                  ),
-                ),
-              ),
+                  icon: Icons.location_on),
+
               GestureDetector(
                 onTap: () {
-                  if(formcontroller.linkText.text.isEmpty){
+                  if (formcontroller.linkText.text.isEmpty) {
                     displayToastMessage("Link field is empty", context);
-                  }
-                  else if(formcontroller.nameText.text.isEmpty){
-                    displayToastMessage("Namespace should not be empty", context);
-                  }
-                  else if(formcontroller.emailText.text.isEmpty){
+                  } else if (formcontroller.nameText.text.isEmpty) {
+                    displayToastMessage(
+                        "Namespace should not be empty", context);
+                  } else if (formcontroller.emailText.text.isEmpty) {
                     displayToastMessage("Provide Email address", context);
-                  }
-                  else if(!formcontroller.emailText.text.contains("@")){
+                  } else if (!formcontroller.emailText.text.contains("@")) {
                     displayToastMessage("Email address is invalid", context);
-                  }
-                  else if(formcontroller.contactText.text.isEmpty){
+                  } else if (formcontroller.contactText.text.isEmpty) {
                     displayToastMessage("Contact field is empty ", context);
-                  }
-                  else if(formcontroller.contactText.text.length > 14){
+                  } else if (formcontroller.contactText.text.length > 14) {
                     displayToastMessage("Contact number is invalid", context);
-                  }
-                   else if(formcontroller.positionText.text.isEmpty){
+                  } else if (formcontroller.positionText.text.isEmpty) {
                     displayToastMessage("Profession space is empty", context);
-                  }
-                  else if(formcontroller.locationText.text.isEmpty){
-                    displayToastMessage("Provide your location address", context);
-                  }
-                  else{
+                  } else if (formcontroller.locationText.text.isEmpty) {
+                    displayToastMessage(
+                        "Provide your location address", context);
+                  } else {
                     displayToastMessage("Done Successfully", context);
 
                     Get.to(() => const BusinessCardQrPage());
                     formcontroller.addQrCode(
-                    formcontroller.linkText.text,
-                    formcontroller.nameText.text,
-                    formcontroller.contactText.text,
-                    formcontroller.locationText.text,
-                    formcontroller.emailText.text,
-                    formcontroller.positionText.text
-                  );
+                        formcontroller.linkText.text,
+                        formcontroller.nameText.text,
+                        formcontroller.contactText.text,
+                        formcontroller.locationText.text,
+                        formcontroller.emailText.text,
+                        formcontroller.positionText.text);
                   }
-                  
                 },
                 child: Container(
                   margin: const EdgeInsets.symmetric(

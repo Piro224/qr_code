@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:qr_code/Pages/Bookings/booking_page.dart';
 import 'package:qr_code/Utils/toast.dart';
 
+import '../../Utils/customTextFields.dart';
 import '../../model/form_controller.dart';
 
 class BookingFormPage extends StatefulWidget {
@@ -44,86 +45,33 @@ class _BookingFormPageState extends State<BookingFormPage> {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 15,
-                      ),
-                      child: TextField(
-                        // maxLines: 7,
-                        // minLines: 1,
+                    CustomTextField(
+                        formcontroller: formcontroller,
+                        labelText: 'Enter link for QRcode',
                         controller: formcontroller.linkText,
-                        decoration: const InputDecoration(
-                          labelText: 'Enter link for QRcode',
-                          border: OutlineInputBorder(),
-                          prefixIcon:
-                              Icon(Icons.link_sharp, color: Colors.black),
-                          // fillColor: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 15,
-                      ),
-                      child: TextField(
+                        icon: Icons.link_outlined),
+                    CustomTextField(
+                        formcontroller: formcontroller,
+                        labelText: 'Enter heading eg. BOOK NOW',
                         controller: formcontroller.nameText,
-                        decoration: const InputDecoration(
-                          labelText: 'Enter heading eg. BOOK NOW',
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.title, color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 15,
-                      ),
-                      child: TextField(
+                        icon: Icons.title),
+                    CustomTextField(
+                        formcontroller: formcontroller,
+                        labelText: 'Enter some text eg. brief description',
                         controller: formcontroller.positionText,
-                        decoration: const InputDecoration(
-                          labelText: 'Enter some text eg. brief description',
-                          border: OutlineInputBorder(),
-                          prefixIcon:
-                              Icon(Icons.text_format, color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 15,
-                      ),
-                      child: TextField(
+                        icon: Icons.text_format),
+                    CustomTextField(
+                        formcontroller: formcontroller,
+                        keyType: TextInputType.phone,
+                        labelText:
+                            'Enter Customer care contact eg. +41 *********',
                         controller: formcontroller.contactText,
-                        keyboardType: TextInputType.phone,
-                        decoration: const InputDecoration(
-                          labelText:
-                              'Enter Customer care contact eg. +41 *********',
-                          border: OutlineInputBorder(),
-                          prefixIcon:
-                              Icon(Icons.dialpad_outlined, color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 15,
-                      ),
-                      child: TextField(
+                        icon: Icons.dialpad_outlined),
+                    CustomTextField(
+                        formcontroller: formcontroller,
+                        labelText: 'Enter your location',
                         controller: formcontroller.locationText,
-                        keyboardType: TextInputType.text,
-                        decoration: const InputDecoration(
-                          labelText: 'Enter your location',
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.location_on_rounded,
-                              color: Colors.black),
-                        ),
-                      ),
-                    ),
+                        icon: Icons.location_on_rounded),
                     GestureDetector(
                       onTap: () {
                         if (formcontroller.linkText.text.isEmpty) {
